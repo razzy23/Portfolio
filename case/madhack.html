@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MadHack 2023 Concept — Brand design · Rav</title>
+<meta name="description" content="MadHack 2023 brand guidelines: logo system, colour, typography, mascot elements, swags and awards for the IEEE Student Branch of UCSC hackathon.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/case.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="back" href="../index.html#graphics" data-tip="back to portfolio">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M56.8488 24.4345C56.8488 27.5298 55.9766 30.2877 54.2322 32.7083C52.5076 35.129 50.2577 36.875 47.4825 37.9464L56.8488 50H43.9739L35.9456 38.869H15.2208V50H3V22.2208C3 15.4714 8.47144 10 15.2208 10H42.4277C45.084 10 47.5024 10.6548 49.6829 11.9643C51.8634 13.254 53.5979 14.9901 54.8864 17.1726C56.1947 19.3552 56.8488 21.7758 56.8488 24.4345ZM19.2208 18.869C17.0117 18.869 15.2208 20.6599 15.2208 22.869V30H27.1591H39.0975C40.6238 30 41.9222 29.4544 42.9926 28.3631C44.0829 27.2718 44.628 25.9623 44.628 24.4345C44.628 22.9067 44.0829 21.5972 42.9926 20.506C41.9222 19.4147 40.6238 18.869 39.0975 18.869H19.2208Z"/></svg>
+      <span>← portfolio</span>
+    </a>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+  <div class="bar" id="bar"></div>
+</header>
+
+<main>
+  <!-- 01 · cover -->
+  <section class="cover" id="top" data-title="cover">
+    <div class="wrap">
+      <div class="cover-card reveal" id="coverCard" data-tip="click the M">
+        <span class="tag">Brand design · 2023</span>
+        <div class="logo" id="coverLogo"><img src="../assets/work/madhack/logos/icon.svg" alt="MadHack icon logo" width="360"></div>
+        <span class="hint">hover to tilt · click to spin</span>
+      </div>
+      <div>
+        <h1 class="reveal" style="--d:.1s">Brand<br><span class="hl">guidelines</span></h1>
+        <p class="sub reveal" style="--d:.18s">Hackathons • IEEE Student Branch of UCSC</p>
+        <img class="wm reveal" style="--d:.26s" src="../assets/work/madhack/logos/cover-wm.svg" alt="MadHack wordmark" width="640">
+        <div class="meta reveal" style="--d:.34s">
+          <div><small>Project</small><b>MadHack 2023 Concept</b></div>
+          <div><small>Year</small><b>2023</b></div>
+          <div><small>Discipline</small><b>Brand design</b></div>
+          <div><small>Designer</small><b>Ravindu S</b></div>
+        </div>
+        <p class="scroll-cue reveal" style="--d:.4s"><i>↓</i> scroll, or jump with the chips above</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · overview -->
+  <section id="overview" data-title="overview">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Brand overview</h2>
+      <div class="ov">
+        <div class="reveal">
+          <p><b>MadHack</b> is a recurring mobile application development hackathon organised by the IEEE Student Branch of UCSC. It is an evolving brand built around innovation, creativity, technology, and collaboration.</p>
+          <p>Each edition may introduce a unique theme and visual direction, but the core MadHack identity should remain consistent and recognisable.</p>
+          <p>Every edition should build upon the legacy of previous events while contributing to the continued growth and recognition of the MadHack brand.</p>
+        </div>
+        <div class="card focus-box reveal" style="--d:.1s">
+          <h3>Future organising committees should focus on:</h3>
+          <ul class="focus" id="focus">
+            <li><button><span class="box">✓</span>Maintaining consistency in the established brand identity.</button></li>
+            <li><button><span class="box">✓</span>Introducing fresh themes and creative directions for each edition.</button></li>
+            <li><button><span class="box">✓</span>Reflecting innovation, youthfulness, and technological relevance.</button></li>
+            <li><button><span class="box">✓</span>Maintaining a unified tone across all communications.</button></li>
+            <li><button><span class="box">✓</span>Preserving and handing over brand assets and documentation.</button></li>
+          </ul>
+          <div class="meter"><span><i id="meterFill"></i></span><span id="meterTxt">0/5 handed over</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · logos -->
+  <section id="logos" data-title="logo variations">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Logo variations</h2>
+      <div class="logos">
+        <div class="stage reveal" id="stage" data-bg="dark">
+          <span class="stage-label" id="stageLabel">Main logo</span>
+          <div class="bgs" role="group" aria-label="Preview background">
+            <button data-b="dark" class="on" aria-label="Dark background" data-tip="dark"></button>
+            <button data-b="light" aria-label="Light background" data-tip="light"></button>
+            <button data-b="white" aria-label="White background" data-tip="white"></button>
+          </div>
+          <img id="stageImg" src="../assets/work/madhack/logos/main.svg" alt="Main logo">
+          <span class="stage-warn" id="stageWarn">needs a dark background</span>
+        </div>
+        <div class="vgrid reveal" id="vgrid" style="--d:.1s"></div>
+        <p class="note reveal">White or black logos are to be used only when required to. Current blue 3D logo can be used on either light or dark background as the requirement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · colors -->
+  <section id="colors" data-title="colors">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Colors</h2>
+      <div class="colors">
+        <div class="venn reveal" id="venn" aria-label="Colour roles diagram">
+          <span class="c bgc" data-k="bg"></span><span class="c pri" data-k="pri"></span><span class="c sec" data-k="sec"></span><span class="c body" data-k="body"></span>
+          <span class="lab l-bg" data-k="bg">Neutral background</span>
+          <span class="lab l-pri" data-k="pri">Primary</span>
+          <span class="lab l-sec" data-k="sec">Secondary</span>
+          <span class="lab l-body" data-k="body">Body elements</span>
+        </div>
+        <div class="swatches reveal" style="--d:.1s">
+          <button class="sw" data-hex="#090429" data-tip="copy #090429"><span class="box" style="--c:#090429"></span><b>Background</b><code>#090429</code></button>
+          <button class="sw" data-hex="#EEEEFF" data-tip="copy #EEEEFF"><span class="box" style="--c:#EEEEFF"></span><b>White</b><code>#EEEEFF</code></button>
+          <button class="sw" data-hex="#54C5F7" data-tip="copy #54C5F7"><span class="box" style="--c:#54C5F7"></span><b>Primary</b><code>#54C5F7</code></button>
+          <button class="sw" data-hex="#02A8E1" data-tip="copy #02A8E1"><span class="box" style="--c:#02A8E1"></span><b>Secondary</b><code>#02A8E1</code></button>
+        </div>
+        <p class="note reveal">A simple dark theme palette that relies on dark backgrounds and the harmony between whites and blues for foreground content</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · typography -->
+  <section id="type" data-title="typography">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Typography</h2>
+      <div class="tt-bar reveal"><input id="tt" type="text" placeholder="Type your own words to test the type system…" maxlength="48" aria-label="Type tester"><button class="btn ghost" id="ttReset">Reset</button></div>
+      <div class="trow reveal"><div class="spec t1" data-s="Titles Display" data-d="1"></div><div class="sz">86px - 108px</div><div class="rule">in white &amp; blue mixed colors</div></div>
+      <div class="trow reveal"><div class="spec t2" data-s="Subtitles Display" data-d="1"></div><div class="sz">48px - 64px</div><div class="rule">in white &amp; blue mixed colors</div></div>
+      <div class="trow reveal"><div class="spec t3" data-s="Body main"></div><div class="sz">32px</div><div class="rule">white (Used in CTA buttons as well)</div></div>
+      <div class="trow reveal"><div class="spec t4" data-s="at 6:00PM"></div><div class="sz">28px</div><div class="rule">white (used body text only)</div></div>
+    </div>
+  </section>
+
+  <!-- 06 · elements -->
+  <section id="elements" data-title="elements used">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Elements used</h2>
+      <p class="lede reveal">Use AI or drawn elements relating to ancient historical statues using tech, mobile devices or laptops etc.<br>The brand needs a mascot that is somehow involved with technology</p>
+      <div class="egrid" id="egrid"></div>
+    </div>
+  </section>
+
+  <!-- 07 · swags -->
+  <section id="swags" data-title="swags">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Swags</h2>
+      <p class="lede reveal">All delegate swags should follow the current year’s MadHack branding and mascot themes. If possible marketing material should too. For example...</p>
+      <div class="swags" id="swagCanvas">
+        <figure class="swag posterimg" style="--l:20%;--t:12%;--w:25%;--r:-8deg;--z:1" data-lb="../assets/work/madhack/poster.jpg" data-cap="Files — poster"><figcaption>Files</figcaption><img src="../assets/work/madhack/poster.jpg" alt="MadHack poster with a statue holding a phone" loading="lazy"></figure>
+        <figure class="swag posterimg" style="--l:3%;--t:20%;--w:27%;--r:-14deg;--z:2" data-lb="../assets/work/madhack/poster.jpg" data-cap="Files — poster"><img src="../assets/work/madhack/poster.jpg" alt="MadHack poster, front copy" loading="lazy"></figure>
+        <figure class="swag isticker-wrap" style="--l:47%;--t:6%;--w:8.5%;--r:0deg;--z:3"><figcaption style="left:calc(100% + 12px);top:40%">Stickers</figcaption><div class="isticker"><img src="../assets/work/madhack/logos/icon.svg" alt="MadHack icon sticker"></div></figure>
+        <figure class="swag" style="--l:43%;--t:30%;--w:19%;--r:2deg;--z:3" data-lb="../assets/work/madhack/sticker-round.png" data-cap="Sticker"><img src="../assets/work/madhack/sticker-round.png" alt="Round sticker of a bearded statue bust" loading="lazy"></figure>
+        <figure class="swag wide" style="--l:65%;--t:2%;--w:34%;--r:0deg;--z:2" data-lb="../assets/work/madhack/tshirt.png" data-cap="Tshirt"><figcaption style="left:35%;top:30%">Tshirt</figcaption><img src="../assets/work/madhack/tshirt.png" alt="Marble statue wearing a MadHack t-shirt" loading="lazy"></figure>
+        <p class="swag-hint">drag things around · click to enlarge</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · awards -->
+  <section id="awards" data-title="awards">
+    <div class="wrap">
+      <p class="eyebrow reveal">MadHack 23</p>
+      <h2 class="reveal">Awards</h2>
+      <p class="lede reveal">Same as delegate swags, apply the branding to the all awards, tokens of appreciations and certificates given. Maintain professionalism in a way that these awards can be recognized even out of context.</p>
+      <div class="awards">
+        <button class="cert reveal" data-lb="../assets/work/madhack/certificate.jpg" data-cap="Participant certificate" data-tip="straighten &amp; zoom"><img src="../assets/work/madhack/certificate.jpg" alt="MadHack 2023 certificate of achievement" loading="lazy"></button>
+        <span class="cert-label">Participant certificate</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end" id="end" data-title="the end">
+    <div class="wrap">
+      <p class="eyebrow">Brand design · 2023</p>
+      <h2>That's a <span class="hl">wrap</span></h2>
+      <p class="lede" style="margin-inline:auto">Thanks for scrolling through MadHack 23. More case studies are on the way.</p>
+      <div class="row"><a class="btn" href="../index.html#graphics">← Back to graphics</a><button class="btn ghost" id="toTop">Back to top ↑</button></div>
+      <p class="credit">Ravindu S</p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-label="Image viewer">
+  <button class="x" aria-label="Close">✕</button><button class="nav prev" aria-label="Previous">←</button><button class="nav next" aria-label="Next">→</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="pointer" id="pointer" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2.5V19.5L8.4 15.6L11.4 22L14.3 20.7L11.3 14.3L17.2 14.2Z" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="pill"></span></div>
+
+<script src="../js/cursor.js"></script>
+<script src="../js/case.js"></script>
+</body>
+</html>

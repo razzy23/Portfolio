@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && exec python3 -m http.server ${PORT:-5173} -d /private/tmp/claude-501/-Users-rav-Documents-Portfolio/4990417b-b584-4e7b-b0a0-86cf69bfeb2c/scratchpad/site"
+      ],
+      "port": 5173,
+      "autoPort": false
+    }
+  ]
+}

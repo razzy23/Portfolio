@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Traveller — UX research + design · Rav</title>
+<meta name="description" content="Traveller: a research and design project for a tourist-focused taxi and public transport app in Sri Lanka.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Roboto:wght@700;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/traveller.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="back" href="../index.html#uiux" data-tip="back to portfolio">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M56.8488 24.4345C56.8488 27.5298 55.9766 30.2877 54.2322 32.7083C52.5076 35.129 50.2577 36.875 47.4825 37.9464L56.8488 50H43.9739L35.9456 38.869H15.2208V50H3V22.2208C3 15.4714 8.47144 10 15.2208 10H42.4277C45.084 10 47.5024 10.6548 49.6829 11.9643C51.8634 13.254 53.5979 14.9901 54.8864 17.1726C56.1947 19.3552 56.8488 21.7758 56.8488 24.4345ZM19.2208 18.869C17.0117 18.869 15.2208 20.6599 15.2208 22.869V30H27.1591H39.0975C40.6238 30 41.9222 29.4544 42.9926 28.3631C44.0829 27.2718 44.628 25.9623 44.628 24.4345C44.628 22.9067 44.0829 21.5972 42.9926 20.506C41.9222 19.4147 40.6238 18.869 39.0975 18.869H19.2208Z"/></svg>
+      <span>← portfolio</span>
+    </a>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+  <div class="road" aria-hidden="true"><button class="tuk" id="tuk" tabindex="-1" data-tip="beep beep!"><img src="../assets/work/traveller/tuk.png" alt=""></button></div>
+</header>
+
+<main>
+  <!-- cover -->
+  <section class="cover" id="top" data-title="cover">
+    <div class="wrap">
+      <img class="logo reveal" src="../assets/work/traveller/logo.png" alt="Traveller — smart booking, budget-friendly rides" width="871" height="241">
+      <div class="meta reveal" style="--d:.15s">
+        <div><small>Project</small><b>UX research + design</b></div>
+        <div><small>Year</small><b>2024</b></div>
+        <div><small>Context</small><b>Internship project</b></div>
+        <div><small>Role</small><b>Solo research &amp; design</b></div>
+        <div><small>Platform</small><b>Android · rider + driver apps</b></div>
+      </div>
+      <p class="scroll-cue reveal" style="--d:.25s"><i>↓</i> scroll — the tuk-tuk up top follows you</p>
+    </div>
+  </section>
+
+  <!-- overview -->
+  <section id="overview" data-title="overview">
+    <div class="wrap">
+      <h2 class="reveal">Overview</h2>
+      <div class="two">
+        <div class="reveal">
+          <p>Traveller is a mobile app designed to solve common travel issues faced by tourists navigating Sri Lanka. While existing ride hailing services work well for locals and short distance travel, they fall short for budget conscious tourists needing long distance, multi modal travel options and clear communication tools.</p>
+          <p>While ride hailing apps like Uber and PickMe exists in Sri Lanka, we designed this product specifically with the tourists in mind. Touching on their main pain points while preserving the familiarity of the more popular apps, Traveller was initiated with the one goal of “<em>easing travel for Sri Lankan tourists</em>”.</p>
+        </div>
+        <div class="glance reveal" style="--d:.1s">
+          <div class="card"><small>For locals</small><b>Short rides work</b><span>Existing apps already cover them.</span></div>
+          <div class="card amber"><small>For tourists</small><b>Long, budget, multi-modal</b><span>Plus clear ways to communicate.</span></div>
+          <div class="card blue"><small>The goal</small><b>“easing travel for Sri Lankan tourists”</b><span>Familiar patterns, tourist-first details.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- research -->
+  <section id="research" data-title="research">
+    <div class="wrap">
+      <h2 class="reveal">Research</h2>
+      <p class="lede reveal">Key problems identified in the market research, and the solutions they led to. <b>Tap a problem</b> to see what answered it.</p>
+      <div class="board reveal" id="board">
+        <div class="col">
+          <h3>Key problems</h3>
+          <button class="note pink" data-pain="a" style="--r:-3deg"><span>Limited options for travel. This is optimal for short distances covered by bike or tuk but not as beneficial for long distance travel.</span></button>
+          <button class="note pink" data-pain="b" style="--r:2.5deg"><span>unlike locals, tourists may not be familiar with the exact locations and may have trouble pronouncing local areas</span></button>
+        </div>
+        <div class="col wide">
+          <h3>Possible solutions</h3>
+          <div class="sols">
+            <article class="note blue sol" data-from="a" data-go="tickets:1" style="--r:3deg"><span>Make bookings on first/second class <b>train tickets</b> and Highway <b>bus tickets</b>. Could be a feature later</span><img src="../assets/work/traveller/icons/station.png" alt=""><em>see tickets →</em></article>
+            <article class="note blue sol" data-from="a" data-go="tickets:2" style="--r:-2deg"><span>Including <b>bus and train information</b> on the same application</span><img src="../assets/work/traveller/icons/train.png" alt=""><em>see routes →</em></article>
+            <article class="note blue sol" data-from="a" data-go="tickets:2" style="--r:2deg"><span>Suggesting/Recommending such modes of transport for <b>long distance</b> and <b>budget travel options</b></span><img src="../assets/work/traveller/icons/suggest.png" alt=""><em>see suggestions →</em></article>
+            <article class="note blue sol" data-from="b" data-go="pickup:1" style="--r:-2.5deg"><span><b>Translator</b> built into the driver-rider chat.</span><img src="../assets/work/traveller/icons/translate.png" alt=""><em>see chat →</em></article>
+            <article class="note blue sol" data-from="b" data-go="pickup:3" style="--r:3deg"><span>Option to <b>videocall</b> the driver to show the exact location</span><img src="../assets/work/traveller/icons/video.png" alt=""><em>see video call →</em></article>
+            <article class="note blue sol" data-from="b" data-go="pickup:1" style="--r:-3deg"><span>Option to send a location of the <b>pick up spot landmarks</b> through the driver-rider chat.</span><img src="../assets/work/traveller/icons/pin.png" alt=""><em>see landmarks →</em></article>
+          </div>
+        </div>
+      </div>
+      <p class="board-hint" id="boardHint">Nothing selected — all solutions shown.</p>
+    </div>
+  </section>
+
+  <!-- flows -->
+  <section id="flows" data-title="user flows">
+    <div class="wrap">
+      <h2 class="reveal">Main user-flows</h2>
+      <p class="lede reveal">Five flows covering sign-up, booking and public transport. Pick one, click the diagram to zoom.</p>
+      <div class="tabs reveal" id="flowTabs" role="tablist"></div>
+      <button class="flow reveal" id="flowView" data-tip="zoom"><img id="flowImg" src="" alt=""></button>
+      <p class="flow-cap" id="flowCap"></p>
+    </div>
+  </section>
+
+  <!-- screens -->
+  <section id="screens" data-title="the designs">
+    <div class="wrap">
+      <h2 class="reveal">Designs</h2>
+      <p class="lede reveal">Walk through the main journeys screen by screen. The notes on the right are the decisions behind each step.</p>
+      <div class="tabs reveal" id="walkTabs" role="tablist"></div>
+      <div class="walk reveal">
+        <div class="phone-col">
+          <div class="phone" id="phone" tabindex="0" aria-label="Screen viewer. Use arrow keys to change screens.">
+            <div class="screen"><img id="phoneImg" src="" alt=""></div>
+            <span class="dot" id="phoneDot" hidden>!</span>
+          </div>
+          <div class="ctrls">
+            <button class="rnd" id="prev" aria-label="Previous screen">←</button>
+            <span class="count" id="count">1 / 1</span>
+            <button class="rnd" id="next" aria-label="Next screen">→</button>
+          </div>
+        </div>
+        <div class="info">
+          <p class="step-label" id="stepLabel"></p>
+          <h3 id="stepTitle"></h3>
+          <p id="stepNote"></p>
+          <div class="decisions" id="decisions"></div>
+        </div>
+      </div>
+      <div class="strip reveal" id="strip" aria-label="All screens"></div>
+    </div>
+  </section>
+
+  <!-- future -->
+  <section id="future" data-title="future">
+    <div class="wrap">
+      <h2 class="reveal">Future potential</h2>
+      <p class="lede reveal">By focusing on simplicity and the specific needs of tourists in Sri Lanka, Traveller carves out a distinct niche in the ride-hailing market. As we look to the future, there’s a clear path for growth—be it adapting to new destinations, introducing features like ride-sharing or vehicle rentals, or expanding into broader tourism services. Traveller’s journey is just beginning, and we’re eager to keep innovating to make travel easier and more enjoyable for everyone.</p>
+      <div class="roadmap reveal" id="roadmap">
+        <svg class="rm-line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20H1000" /></svg>
+        <button class="stop on" data-i="0" data-tip="next stop"><i>1</i><b>New destinations</b></button>
+        <button class="stop" data-i="1" data-tip="next stop"><i>2</i><b>Ride-sharing &amp; vehicle rentals</b></button>
+        <button class="stop" data-i="2" data-tip="next stop"><i>3</i><b>Broader tourism services</b></button>
+        <img class="rm-tuk" id="rmTuk" src="../assets/work/traveller/tuk.png" alt="">
+      </div>
+      <p class="stop-text" id="stopText"></p>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div class="wrap">
+      <img class="ghost" src="../assets/work/traveller/tuk-end.png" alt="">
+      <p class="credit">Concept and designs by <b>Ravindu Sasanka</b></p>
+      <div class="row"><a class="btn" href="../index.html#uiux">← Back to UI/UX</a><button class="btn ghost" id="toTop">Back to top ↑</button></div>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-label="Zoomed diagram"><button class="x" aria-label="Close">✕</button><div class="lb-scroll"><img id="lbImg" alt=""></div></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="pointer" id="pointer" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2.5V19.5L8.4 15.6L11.4 22L14.3 20.7L11.3 14.3L17.2 14.2Z" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="pill"></span></div>
+
+<script src="../js/cursor.js"></script>
+<script src="../js/traveller.js"></script>
+</body>
+</html>
