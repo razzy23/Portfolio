@@ -176,8 +176,12 @@ function openWindow(id, { title, color, build, width, from }) {
   const r = win.getBoundingClientRect();
   const off = (cascade++ % 5) * 26 - 52;
   const left = clamp((innerWidth - r.width) / 2 + off, 8, Math.max(8, innerWidth - r.width - 8));
-  const top = clamp((innerHeight - r.height) / 2 + off, 64, Math.max(64, innerHeight - r.height - 8));
+  /* keep the whole window clear of the top nav and the bottom toolbar / dock */
+  const SAFE_T = 68, SAFE_B = 104;
+  const fitTop = (t, h) => clamp(t, SAFE_T, Math.max(SAFE_T, innerHeight - SAFE_B - h));
+  const top = fitTop(SAFE_T + (innerHeight - SAFE_T - SAFE_B - r.height) / 2 + off / 2, r.height);
   win.style.left = left + 'px'; win.style.top = top + 'px';
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (win.isConnected) win.style.top = fitTop(parseFloat(win.style.top) || 0, win.offsetHeight) + 'px'; }).observe(win);
   if (from) { const f = from.getBoundingClientRect(); win.style.transformOrigin = `${f.left + f.width / 2 - left}px ${f.top + f.height / 2 - top}px`; }
 
   win.addEventListener('pointerdown', () => focusWin(win));
@@ -204,6 +208,11 @@ function topWindowId() {
   return best;
 }
 
+/* wordmark logos rendered in HTML so they stay sharp and transparent */
+const LOGOS = {
+  intergalactic: '<span class="lg" role="img" aria-label="Intergalactic"><img class="lg-glow" src="assets/work/intergalactic/arc-glow.svg" alt=""><img class="lg-arc" src="assets/work/intergalactic/arc.svg" alt=""><span class="lg-t">Intergalactic</span></span>'
+};
+
 /* ---------- window contents ---------- */
 function openCategory(key, from) {
   const c = D.categories[key];
@@ -218,8 +227,8 @@ function openCategory(key, from) {
         if (!c.items.length) { grid.replaceWith(el('div', 'empty', '<b>Empty folder</b><span>New work is on its way.</span>')); body.scrollTop = 0; return; }
         c.items.forEach((it, i) => {
           const b = el('button', 'card');
-          b.innerHTML = `<span class="thumb${it.contain ? ' contain' : ''}" style="--c:${it.bg || c.tint};--l:${c.color}">${it.cover ? `<img src="${esc(it.cover)}" alt="">` : `<span class="glyph">${esc(c.glyph)}</span>`}${it.sample ? '<em class="sample">sample</em>' : ''}</span>
-            <span class="meta"><b>${esc(it.title)}</b><small>${esc(it.year)} · ${esc(it.role)}</small></span>`;
+          b.innerHTML = `<span class="thumb${it.contain ? ' contain' : ''}" style="--c:${it.bg || c.tint};--l:${c.color}">${it.logo ? LOGOS[it.logo] : it.cover ? `<img src="${esc(it.cover)}" alt="">` : `<span class="glyph">${esc(c.glyph)}</span>`}${it.sample ? '<em class="sample">sample</em>' : ''}</span>
+            <span class="meta"><b>${esc(it.title)}</b><small>${[it.year, it.role].filter(Boolean).map(esc).join(' · ')}</small></span>`;
           b.addEventListener('click', () => detail(i));
           grid.append(b);
         });
@@ -229,9 +238,9 @@ function openCategory(key, from) {
         const it = c.items[i]; once(`proj-${key}-${i}`, 5); sfx.click();
         body.innerHTML = `<div class="detail">
           <div class="crumbs"><button class="btn ghost" data-back>← files</button><span>${esc(c.title)}</span><i>/</i><b>${esc(it.title)}</b></div>
-          <span class="thumb${it.contain ? ' contain' : ''}" style="--c:${it.bg || c.tint};--l:${c.color}">${it.cover ? `<img src="${esc(it.cover)}" alt="">` : `<span class="glyph">${esc(c.glyph)}</span>`}${it.sample ? '<em class="sample">sample</em>' : ''}</span>
+          <span class="thumb${it.contain ? ' contain' : ''}" style="--c:${it.bg || c.tint};--l:${c.color}">${it.logo ? LOGOS[it.logo] : it.cover ? `<img src="${esc(it.cover)}" alt="">` : `<span class="glyph">${esc(c.glyph)}</span>`}${it.sample ? '<em class="sample">sample</em>' : ''}</span>
           <h2>${esc(it.title)}</h2><p>${esc(it.desc)}</p>
-          <dl><dt>Role</dt><dd>${esc(it.role)}</dd><dt>Year</dt><dd>${esc(it.year)}</dd></dl>
+          <dl><dt>Role</dt><dd>${esc(it.role)}</dd>${it.year ? `<dt>Year</dt><dd>${esc(it.year)}</dd>` : ''}</dl>
           <div class="tags">${it.tools.map(t => `<span class="tag" style="--tc:${c.color}">${esc(t)}</span>`).join('')}</div>
           <div class="btn-row"><a class="btn" href="${esc(it.link || '#')}"${/^https?:/.test(it.link || '') ? ' target="_blank" rel="noopener"' : ''}>${esc(it.cta || 'View project ↗')}</a>
           <button class="btn ghost" data-next>Next file →</button></div></div>`;

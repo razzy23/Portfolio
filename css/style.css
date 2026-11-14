@@ -212,7 +212,7 @@ body[data-tool="comment"] .tool-layer{cursor:copy}
 
 /* ---------- windows ---------- */
 .windows{position:fixed;inset:0;z-index:100;pointer-events:none}
-.win{position:fixed;pointer-events:auto;display:flex;flex-direction:column;width:min(740px,94vw);max-height:min(80svh,780px);
+.win{position:fixed;pointer-events:auto;display:flex;flex-direction:column;width:min(740px,94vw);max-height:min(calc(100svh - 176px),780px);
   background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:10px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;
   animation:winIn .38s var(--bounce)}
 @keyframes winIn{from{transform:scale(.15);opacity:0}}
@@ -363,3 +363,13 @@ body[data-tool="comment"] .tool-layer{cursor:copy}
 .thumb.contain{background-image:none}.thumb.contain img{object-fit:contain;padding:16%}
 
 .empty{display:grid;gap:4px;justify-items:center;text-align:center;padding:36px 16px;border:2px dashed var(--ink);border-radius:10px;color:var(--muted)}.empty b{color:var(--ink);font-size:16px}
+
+/* wordmark logo (Intergalactic) used as a card thumbnail */
+.lg{position:relative;display:block;font-size:20px;width:7.6em;height:4.36em;color:#fff;flex:none;transition:transform .3s var(--bounce)}
+.lg-arc{position:absolute;left:.64em;top:0;width:6.47em;height:4.36em;max-width:none;border:0}
+.lg-glow{position:absolute;left:.2em;top:-.44em;width:7.35em;height:5.24em;max-width:none;border:0;opacity:.9}
+.lg-t{position:absolute;left:0;top:2.43em;transform:translateY(-50%);font:400 1em/1.2 'Sarpanch',var(--font);text-transform:uppercase;white-space:nowrap;letter-spacing:.01em}
+.thumb .lg-arc,.thumb .lg-glow{position:absolute;width:6.47em;height:4.36em;object-fit:fill}
+.thumb .lg-glow{width:7.35em;height:5.24em}
+.card:hover .lg{transform:scale(1.06) rotate(-2deg)}
+.detail .thumb .lg{font-size:clamp(26px,5vw,44px)}

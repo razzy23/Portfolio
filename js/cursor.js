@@ -25,11 +25,17 @@
     ptr.classList.toggle('flip', e.clientX > innerWidth - 240);
     ptr.classList.toggle('below', e.clientY < 70);
   };
-  addEventListener('pointermove', e => { place(e); if (e.pointerType === 'mouse') ptr.classList.add('show'); }, { passive: true });
-  addEventListener('pointerdown', e => { place(e); if (e.pointerType === 'mouse') { rand(); ptr.classList.add('click'); setTimeout(() => ptr.classList.remove('click'), 160); } }, { passive: true });
+  /* The native cursor is only hidden once our pointer is actually on screen, so it can never vanish. */
+  const on = () => { ptr.classList.add('seen'); document.documentElement.classList.add('ptr-on'); };
+  const isMouse = e => e.pointerType ? e.pointerType === 'mouse' : true;
+  addEventListener('pointermove', e => { place(e); if (isMouse(e)) on(); }, { passive: true });
+  addEventListener('mousemove', e => { place(e); on(); }, { passive: true });
+  addEventListener('mouseover', e => { place(e); on(); }, { passive: true });
+  addEventListener('pageshow', () => { ptr.classList.remove('hide'); });
+  addEventListener('pointerdown', e => { place(e); if (e.pointerType === 'mouse') { on(); rand(); ptr.classList.add('click'); setTimeout(() => ptr.classList.remove('click'), 160); } }, { passive: true });
   addEventListener('pointerover', e => {
     ptr.classList.toggle('hide', !!e.target.closest && !!e.target.closest('input,textarea'));
     tip = e.pointerType === 'mouse' ? tipFor(e.target) : ''; render();
   });
-  document.documentElement.addEventListener('mouseleave', () => ptr.classList.remove('show'));
+  document.documentElement.addEventListener('mouseleave', () => { ptr.classList.remove('seen'); document.documentElement.classList.remove('ptr-on'); });
 })();

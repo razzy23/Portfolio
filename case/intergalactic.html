@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Intergalactic — Hackathon UI/UX · Rav</title>
+<meta name="description" content="Intergalactic: an interplanetary travel booking app designed in a hackathon for the Rootcode Triathlon, 2023.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;700&family=Saira:wght@300;400;500;700&family=DM+Sans:wght@700&family=Sarpanch:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/intergalactic.css">
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="top-in">
+    <a class="back" href="../index.html#uiux" data-tip="back to portfolio">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M56.8488 24.4345C56.8488 27.5298 55.9766 30.2877 54.2322 32.7083C52.5076 35.129 50.2577 36.875 47.4825 37.9464L56.8488 50H43.9739L35.9456 38.869H15.2208V50H3V22.2208C3 15.4714 8.47144 10 15.2208 10H42.4277C45.084 10 47.5024 10.6548 49.6829 11.9643C51.8634 13.254 53.5979 14.9901 54.8864 17.1726C56.1947 19.3552 56.8488 21.7758 56.8488 24.4345ZM19.2208 18.869C17.0117 18.869 15.2208 20.6599 15.2208 22.869V30H27.1591H39.0975C40.6238 30 41.9222 29.4544 42.9926 28.3631C44.0829 27.2718 44.628 25.9623 44.628 24.4345C44.628 22.9067 44.0829 21.5972 42.9926 20.506C41.9222 19.4147 40.6238 18.869 39.0975 18.869H19.2208Z"/></svg>
+      <span>← portfolio</span>
+    </a>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+  <div class="orbit" aria-hidden="true"><i id="orbitFill"></i><span class="ship" id="ship">🚀</span></div>
+</header>
+
+<main>
+  <!-- cover -->
+  <section class="cover" id="top" data-title="cover">
+    <div class="wrap hero">
+      <div class="hero-text">
+        <h1 class="lg reveal" style="--lgs:clamp(38px,7.2vw,96px)" aria-label="Intergalactic"><img class="lg-glow" src="../assets/work/intergalactic/arc-glow.svg" alt=""><img class="lg-arc" src="../assets/work/intergalactic/arc.svg" alt=""><span class="lg-t">Intergalactic</span></h1>
+        <p class="tagline reveal" style="--d:.1s">Interplanetary Exploration Made Effortless</p>
+        <p class="lede reveal" style="--d:.15s">A mobile app a team of 3 designers from the University of Colombo School of Computing designed for the design phase of a triathlon-hackathon organized by Rootcode.</p>
+        <div class="meta reveal" style="--d:.2s">
+          <div><small>Event</small><b>Rootcode Triathlon</b></div>
+          <div><small>Year</small><b>2023</b></div>
+          <div><small>Team</small><b>3 designers · UCSC</b></div>
+          <div><small>My role</small><b>UX designer · design system &amp; branding</b></div>
+          <div><small>Design</small><b>Photoshop, Figma</b></div>
+          <div><small>Development</small><b>Flutter</b></div>
+        </div>
+      </div>
+      <div class="hero-phone reveal" style="--d:.15s">
+        <div class="phone tilt" id="heroPhone" data-tip="tilt me"><div class="screen"><img src="../assets/work/intergalactic/hf/splash.jpg" alt="Intergalactic splash screen"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- brief -->
+  <section id="brief" data-title="the brief">
+    <div class="wrap">
+      <h2 class="reveal">The brief</h2>
+      <p class="lede reveal">Design a mobile first solution to an interplanetary travel application. Tap a requirement to jump to where it landed in the designs.</p>
+      <ol class="reqs reveal" id="reqs"></ol>
+      <div class="meter reveal"><span><i id="reqFill"></i></span><span id="reqTxt">0/5 requirements checked</span></div>
+      <div class="note reveal"><b>Features:</b> the problem statement was focused around the <b>ticket booking process</b>. We also added onboarding, a profile, a menu, and registration and authentication.</div>
+    </div>
+  </section>
+
+  <!-- process -->
+  <section id="process" data-title="wireframes → final">
+    <div class="wrap">
+      <h2 class="reveal">Wireframes first</h2>
+      <p class="lede reveal">Priority task first: since this is a hackathon and we were pressed for time, we decided to move ahead with wireframing. A sort of trial and error procedure. With the priority feature wireframed we moved on to a basic design system and the branding.</p>
+      <div class="cmp-wrap reveal">
+        <div class="cmp-col">
+          <div class="phone"><div class="screen cmp" id="cmp" tabindex="0" aria-label="Wireframe and final design comparison. Use left and right arrow keys.">
+            <img id="cmpHf" src="" alt="Final design">
+            <img id="cmpWf" src="" alt="Wireframe">
+            <span class="cmp-tag l">wireframe</span><span class="cmp-tag r">final</span>
+            <i class="cmp-handle" id="cmpHandle"></i>
+          </div></div>
+          <input id="cmpRange" class="range" type="range" min="0" max="100" value="50" aria-label="Wireframe to final design">
+          <p class="hintline">drag the screen, or use the slider</p>
+        </div>
+        <div class="cmp-info">
+          <p class="step-label">Screen <span id="cmpNum">1</span> of <span id="cmpTotal"></span></p>
+          <h3 id="cmpTitle"></h3>
+          <p id="cmpNote"></p>
+          <div class="pairs" id="pairs" role="tablist"></div>
+          <div class="btn-row"><button class="btn" id="cmpSweep">▶ Play the transformation</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- design system -->
+  <section id="system" data-title="design system">
+    <div class="wrap">
+      <h2 class="reveal">Design system</h2>
+      <p class="lede reveal"><b class="hl">My part of the project.</b> I was one of three UX designers and mostly came up with the design system and the branding. The other two designers took on adding screens like the profile and sign up.</p>
+      <div class="sys">
+        <div class="card reveal">
+          <h3>Typography</h3>
+          <input id="tt" class="tt" type="text" maxlength="28" placeholder="Type to test the fonts…" aria-label="Type tester">
+          <div class="type-list" id="typeList"></div>
+        </div>
+        <div class="card reveal" style="--d:.08s">
+          <h3>Brand colors</h3>
+          <div class="venn" id="venn" aria-label="Colour roles diagram">
+            <span class="c pri" data-k="pri"></span><span class="c sec" data-k="sec"></span><span class="c a1" data-k="a1"></span><span class="c a2" data-k="a2"></span>
+            <span class="lab l-pri" data-k="pri">primary</span><span class="lab l-sec" data-k="sec">secondary</span><span class="lab l-acc" data-k="a1">accents</span>
+          </div>
+          <div class="swatches" id="swatches"></div>
+        </div>
+        <div class="card logo-card reveal" style="--d:.16s">
+          <h3>Logo</h3>
+          <button class="logo-stage" id="logoStage" data-tip="launch!" aria-label="Intergalactic logo"><span class="lg" style="--lgs:clamp(30px,6vw,64px)"><img class="lg-glow" src="../assets/work/intergalactic/arc-glow.svg" alt=""><img class="lg-arc" src="../assets/work/intergalactic/arc.svg" alt=""><span class="lg-t">Intergalactic</span></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- screens -->
+  <section id="screens" data-title="the designs">
+    <div class="wrap">
+      <h2 class="reveal">The designs</h2>
+      <p class="lede reveal">Started off with the booking process and created the main flow according to the design guide. Then we proceeded to add extra features, some to be developed, some purely for the design and aesthetic (given the time limit these features could not be developed).</p>
+      <div class="tabs reveal" id="walkTabs" role="tablist"></div>
+      <div class="walk reveal">
+        <div class="phone-col">
+          <div class="phone" id="phone" tabindex="0" aria-label="Screen viewer. Use arrow keys to change screens."><div class="screen"><img id="phoneImg" src="" alt=""></div></div>
+          <div class="ctrls"><button class="rnd" id="prev" aria-label="Previous screen">←</button><span class="count" id="count"></span><button class="rnd" id="next" aria-label="Next screen">→</button></div>
+        </div>
+        <div class="info">
+          <p class="step-label" id="stepLabel"></p>
+          <h3 id="stepTitle"></h3>
+          <p id="stepNote"></p>
+          <p class="reqchip" id="stepReq" hidden></p>
+        </div>
+      </div>
+      <div class="strip reveal" id="strip" aria-label="All screens"></div>
+    </div>
+  </section>
+
+  <!-- onboarding -->
+  <section id="onboarding" data-title="onboarding">
+    <div class="wrap">
+      <h2 class="reveal">Onboarding</h2>
+      <p class="lede reveal">A splash, then a four-step carousel that sells the app before sign up: explore destinations, plan and book, learn about them before you go, and trust the payment. Drag to scroll.</p>
+    </div>
+    <div class="onb reveal" id="onb" data-tip="drag"><img src="../assets/work/intergalactic/onboarding.jpg" alt="Splash screen and four onboarding screens" draggable="false"></div>
+  </section>
+
+  <!-- showcase -->
+  <section id="showcase" data-title="showcase">
+    <div class="wrap">
+      <h2 class="reveal">The screens in a fancy layout</h2>
+      <button class="show reveal" id="show" data-tip="zoom"><img src="../assets/work/intergalactic/screens-layout.jpg" alt="Intergalactic screens arranged at angles on a space background" loading="lazy"></button>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div class="wrap">
+      <h2>Mission <span class="hl">complete</span></h2>
+      <p class="lede" style="margin-inline:auto">Design: Photoshop, Figma · Development: Flutter · Rootcode Triathlon 2023</p>
+      <div class="row"><a class="btn" href="../index.html#uiux">← Back to UI/UX</a><a class="btn ghost" href="https://www.behance.net/gallery/178821833/Intergalactic-A-design-concept" target="_blank" rel="noopener">View on Behance ↗</a><button class="btn ghost" id="toTop">Back to top ↑</button></div>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-label="Zoomed image"><button class="x" aria-label="Close">✕</button><img id="lbImg" alt=""></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="pointer" id="pointer" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2.5V19.5L8.4 15.6L11.4 22L14.3 20.7L11.3 14.3L17.2 14.2Z" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="pill"></span></div>
+
+<script src="../js/cursor.js"></script>
+<script src="../js/intergalactic.js"></script>
+</body>
+</html>
