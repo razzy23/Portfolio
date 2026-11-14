@@ -25,10 +25,10 @@ const SECRETS = {
   konami:    { name: 'Old school',        hint: 'A famous cheat code from 1986.',               solved: '↑ ↑ ↓ ↓ ← → ← → B A' },
   logo:      { name: 'Logo spin',         hint: 'The logo craves attention.',                   solved: 'Click the R five times, fast.' },
   poke:      { name: 'Personal space',    hint: 'Rav does not enjoy being poked. Keep going.',  solved: 'Click Rav 7 times.' },
-  figma:     { name: 'Shape rain',        hint: 'Say the name of the tool this site wears.',    solved: 'Type "figma" anywhere.' },
+  figma:     { name: 'Shape rain',        hint: 'Death to Canva. All hail _____',               solved: 'Type "figma" anywhere.' },
   dark:      { name: 'Night shift',       hint: 'One key flips the lights.',                    solved: 'Press D.' },
   context:   { name: 'Inspector',         hint: 'Right-click like a developer.',                solved: 'Right-click → Copy as CSS.' },
-  sudo:      { name: 'Sudo',              hint: 'Quick actions has a sense of humor.',          solved: 'Type "sudo" in quick actions.' },
+  sudo:      { name: 'Sudo',              hint: 'Admin panel in the quick actions?',            solved: 'Type "sudo" in quick actions.' },
   sleep:     { name: 'Sleepy Rav',        hint: 'Do nothing. Seriously. For 20 seconds.',       solved: 'Stay idle for 20s, then wake him.' },
   boomerang: { name: 'Boomerang',         hint: 'Folders do not belong on Rav. Try it.',        solved: 'Drop a folder onto Rav.' }
 };
