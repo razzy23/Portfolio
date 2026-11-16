@@ -44,6 +44,7 @@ window.SITE = {
       title: 'Web', file: 'web.fig', glyph: '</>', color: '#F23C9E', tint: '#FFB8E0',
       blurb: 'Websites and web apps, built by hand.',
       items: [
+        { title: 'Bucket List by Go Holidays', year: '2026', role: 'Research, design + development', tools: ['Figma', 'Claude', 'Meta Pixel'], desc: 'A luxury travel microsite with one extraordinary journey for every month. Brand, design language and build in three months, with 3,000+ visits and 250+ itinerary downloads and enquiries in the first month.', link: 'case/bucketlist.html', cta: 'Open case study →', live: 'https://goholidays.lk/bucketlist/', cover: 'assets/work/bucketlist/Favicon.svg', contain: true, bg: '#F2EAD8' }
       ]
     },
     graphics: {

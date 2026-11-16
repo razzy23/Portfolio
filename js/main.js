@@ -243,6 +243,7 @@ function openCategory(key, from) {
           <dl><dt>Role</dt><dd>${esc(it.role)}</dd>${it.year ? `<dt>Year</dt><dd>${esc(it.year)}</dd>` : ''}</dl>
           <div class="tags">${it.tools.map(t => `<span class="tag" style="--tc:${c.color}">${esc(t)}</span>`).join('')}</div>
           <div class="btn-row"><a class="btn" href="${esc(it.link || '#')}"${/^https?:/.test(it.link || '') ? ' target="_blank" rel="noopener"' : ''}>${esc(it.cta || 'View project ↗')}</a>
+          ${it.live ? `<a class="btn ghost" href="${esc(it.live)}" target="_blank" rel="noopener">Open live site ↗</a>` : ''}
           <button class="btn ghost" data-next>Next file →</button></div></div>`;
         $('[data-back]', body).addEventListener('click', list);
         $('[data-next]', body).addEventListener('click', () => detail((i + 1) % c.items.length));
