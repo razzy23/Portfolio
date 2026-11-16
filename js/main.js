@@ -174,12 +174,12 @@ function openWindow(id, { title, color, build, width, from }) {
   win.append(bar, body); winLayer.append(win); focusWin(win);
 
   const r = win.getBoundingClientRect();
-  const off = (cascade++ % 5) * 26 - 52;
+  const off = (cascade++ % 5) * 22 - 44;
   const left = clamp((innerWidth - r.width) / 2 + off, 8, Math.max(8, innerWidth - r.width - 8));
   /* keep the whole window clear of the top nav and the bottom toolbar / dock */
-  const SAFE_T = 68, SAFE_B = 104;
+  const SAFE_T = 68, SAFE_B = innerWidth <= 760 ? 70 : 120;
   const fitTop = (t, h) => clamp(t, SAFE_T, Math.max(SAFE_T, innerHeight - SAFE_B - h));
-  const top = fitTop(SAFE_T + (innerHeight - SAFE_T - SAFE_B - r.height) / 2 + off / 2, r.height);
+  const top = fitTop(SAFE_T + (innerHeight - SAFE_T - SAFE_B - r.height) / 2 , r.height);
   win.style.left = left + 'px'; win.style.top = top + 'px';
   if ('ResizeObserver' in window) new ResizeObserver(() => { if (win.isConnected) win.style.top = fitTop(parseFloat(win.style.top) || 0, win.offsetHeight) + 'px'; }).observe(win);
   if (from) { const f = from.getBoundingClientRect(); win.style.transformOrigin = `${f.left + f.width / 2 - left}px ${f.top + f.height / 2 - top}px`; }
@@ -291,27 +291,172 @@ function openAbout(from) {
   });
 }
 
+/* ---------- contact (paper plane) + kind words (sticky-note wall) ---------- */
+const NOTE_COLS = ['#FFE92B', '#FFC7E6', '#BDF3F8', '#C9F7D4', '#E2D1FF'];
+const FUN = [
+  { re: /coffee|cafe|latte|espresso|cappuccino|caffeine|brew/i, img: 'assets/fun/coffee.png', say: 'coffee detected ☕ — a person of culture', key: 'egg-coffee' },
+  { re: /\b(beer|beers|cheers|drink|drinks|pint|pints|pub|cocktail|cocktails|wine|brewery)\b/i, img: 'assets/fun/beer.png', say: 'cheers! 🍻', key: 'egg-drinks' }
+];
+function funPop(anchor, f) {
+  once(f.key, 5); sfx.pop();
+  const r = anchor.getBoundingClientRect();
+  const big = el('img', 'fun-pop'); big.src = f.img; big.alt = ''; big.style.left = (r.left + r.width / 2) + 'px'; big.style.top = (r.top + r.height / 2) + 'px';
+  document.body.append(big); setTimeout(() => big.remove(), 1700);
+  if (!reduce) for (let i = 0; i < 9; i++) {
+    const m = el('img', 'fun-mini'); m.src = f.img; m.alt = '';
+    m.style.left = (r.left + Math.random() * r.width) + 'px'; m.style.top = (r.top - 10) + 'px';
+    m.style.setProperty('--dx', ((Math.random() - .5) * 120) + 'px'); m.style.animationDelay = (Math.random() * .5) + 's'; m.style.width = (22 + Math.random() * 16) + 'px';
+    document.body.append(m); setTimeout(() => m.remove(), 2400);
+  }
+  say(f.say, 2200);
+}
+/* coffee / drinks keywords in a textarea */
+function wireEggs(ta, anchor) {
+  const fired = new Set();
+  ta.addEventListener('input', () => FUN.forEach(f => {
+    const m = f.re.test(ta.value);
+    if (m && !fired.has(f.key)) { fired.add(f.key); funPop(anchor, f); } else if (!m) fired.delete(f.key);
+  }));
+}
+function loadMine() { try { return JSON.parse(localStorage.getItem('rav-wall-mine') || '[]'); } catch (e) { return []; } }
+function saveMine(a) { try { localStorage.setItem('rav-wall-mine', JSON.stringify(a.slice(-6))); } catch (e) {} }
+
+/* send through Web3Forms (no backend); falls back to the visitor's mail app */
+async function deliver({ subject, name, email, message }) {
+  if (D.formKey) {
+    try {
+      const payload = { access_key: D.formKey, subject, from_name: name, name, message, botcheck: '' };
+      if (email) payload.email = email;
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+      const j = await r.json(); return !!j.success;
+    } catch (e) { return false; }
+  }
+  location.href = `mailto:${D.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`; return true;
+}
+/* 3D paper plane: the letter folds itself up and flies away (adapted from "Paper plane animation" by Cihad Turhan, CodePen DPJRRK) */
+function flyLetter(card, name, msg, onFly) {
+  const r = card.getBoundingClientRect();
+  const fl = el('div', 'flight', `<div class="fl-plate front"><b>To: Rav</b><p>${esc(msg)}\n\n— ${esc(name)}</p></div>
+    <div class="fl-box beginning"><div class="fl-lw"><div class="top_left curvable"><svg class="sh" aria-hidden="true"><polygon points="0,0 202,0 0,223"/></svg></div><div class="bottom_left curvable"><svg class="sh" aria-hidden="true"><polygon points="0,0 109,0 201,38 0,38"/></svg></div><div class="wing wing1"><svg class="sh" aria-hidden="true"><polygon points="100,0 100,240 0,240"/></svg></div><div class="wing wing2"><svg class="sh" aria-hidden="true"><polygon points="0,0 0,240 100,240"/></svg></div></div><div class="fl-rw"><div class="top_right curvable"><svg class="sh" aria-hidden="true"><polygon points="0,0 202,0 202,224"/></svg></div><div class="bottom_right curvable"><svg class="sh" aria-hidden="true"><polygon points="109,0 0,0 -92,38 109,38"/></svg></div><div class="wing wing3"><svg class="sh" aria-hidden="true"><polygon points="100,0 100,240 0,240"/></svg></div><div class="wing wing4"><svg class="sh" aria-hidden="true"><polygon points="0,0 0,240 100,240"/></svg></div></div></div>`);
+  fl.style.left = (r.left + r.width / 2 - 200) + 'px'; fl.style.top = (r.top + r.height / 2 - 130) + 'px';
+  if (innerWidth < 420) fl.style.zoom = (innerWidth - 20) / 400;
+  document.body.append(fl);
+  const plate = $('.fl-plate', fl), box = $('.fl-box', fl), flaps = $$('.curvable', fl);
+  const t = (fn, ms) => new Promise(res => setTimeout(() => { fn(); res(); }, ms));
+  card.style.visibility = 'hidden';
+  void fl.offsetWidth;
+  (async () => {
+    await t(() => { plate.classList.remove('front'); box.classList.remove('beginning'); flaps.forEach(f => f.classList.add('curved')); sfx.pop(); }, 350);
+    await t(() => box.classList.add('hover'), 2800);
+    await t(() => box.classList.add('fly_away_first'), 1400);
+    await t(() => { box.classList.add('fly_away'); sfx.lvl(); onFly && onFly(); }, 600);
+    await t(() => fl.remove(), 2200);
+  })();
+}
+
 function openContact(from) {
   once('open-contact', 10);
+  const canSend = !!(D.formKey || D.email);
   openWindow('contact', {
     title: 'contact.fig', color: '#7B9CF0', from, width: 560,
     build(body) {
       body.innerHTML = `<h2>say hi</h2>
-        <div class="thread"><div class="avatar">R</div><div><b>Rav</b><small>just now</small><p style="margin:4px 0 0">Got a project, a question, or a weird idea? Leave a comment — it lands in my inbox.</p></div></div>
-        <form class="composer">
-          <input name="name" placeholder="Your name" required autocomplete="name">
-          <textarea name="msg" rows="4" placeholder="Add a comment…" required></textarea>
-          <div class="btn-row" style="margin:0"><button class="btn" type="submit">Post comment ↗</button></div>
-        </form>
+        <p class="lede-c">Got a project, a question, or a weird idea? Write it down and I'll get it by paper plane.</p>
+        ${canSend ? `<div class="stage-note">
+          <form class="letter" id="letter" novalidate>
+            <div class="l-head"><span>To: <b>Rav</b></span><span class="cnt"><b id="cnt">0</b>/1000</span></div>
+            <label class="l-row">From <input name="name" placeholder="your name" maxlength="60" autocomplete="name" required></label>
+            <label class="l-row">Reply to <input name="email" type="email" placeholder="you@email.com" maxlength="120" autocomplete="email" required></label>
+            <textarea name="msg" rows="5" maxlength="1000" placeholder="Dear Rav…" aria-label="Your message" required></textarea>
+            <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="btn-row" style="margin:4px 0 0"><button class="btn" type="submit" id="sendBtn">Send paper plane ✈</button><small class="err" id="err" aria-live="polite"></small></div>
+          </form>
+          <div class="sent" id="sent" hidden><div class="stamp">DELIVERED</div><p><b>Thanks!</b> Your plane is on its way — I'll reply soon.</p><button class="btn ghost" id="again" type="button">Write another</button></div>
+        </div>` : `<p>Find me on the profiles below.</p>`}
+        <div class="kind-cta"><span>Worked with me? Leave a kind word for the wall.</span><button class="btn ghost" id="toKind" type="button">★ Kind words</button></div>
         <ul class="links">${D.portfolios.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('')}</ul>`;
-      if (!D.email) { $('form', body).remove(); $('.thread p', body).textContent = 'Find me on the profiles below.'; return; }
-      $('form', body).addEventListener('submit', e => {
-        e.preventDefault();
-        const f = new FormData(e.target);
-        const subj = encodeURIComponent(`Hello from ${f.get('name')} (via your portfolio)`);
-        const bod = encodeURIComponent(`${f.get('msg')}\n\n— ${f.get('name')}`);
-        toast('Opening your mail app…', 'Comment posted ✓', 'plain'); once('sent', 15);
-        location.href = `mailto:${D.email}?subject=${subj}&body=${bod}`;
+      $('#toKind', body).addEventListener('click', e => openKind(e.currentTarget));
+      if (!canSend) return;
+      const stageEl = $('.stage-note', body), form = $('#letter', body), ta = $('textarea', form), cnt = $('#cnt', body), err = $('#err', body), sendBtn = $('#sendBtn', body);
+      ta.addEventListener('input', () => { cnt.textContent = ta.value.length; });
+      wireEggs(ta, form);
+      const reset = () => { sendBtn.disabled = false; sendBtn.textContent = 'Send paper plane ✈'; };
+      form.addEventListener('submit', async e => {
+        e.preventDefault(); err.textContent = '';
+        const f = new FormData(form); if (f.get('website')) return;
+        const name = (f.get('name') || '').trim(), msg = (f.get('msg') || '').trim(), email = (f.get('email') || '').trim();
+        if (!name) { err.textContent = 'Add your name.'; form.elements.name.focus(); return; }
+        if (D.formKey && !/^\S+@\S+\.\S+$/.test(email)) { err.textContent = 'Add an email so I can reply.'; form.elements.email.focus(); return; }
+        if (!msg) { err.textContent = 'Write a message first.'; ta.focus(); return; }
+        sendBtn.disabled = true; sendBtn.textContent = 'Folding…';
+        const ok = await deliver({ subject: `Hello from ${name} (via your portfolio)`, name, email, message: `${msg}\n\n— ${name}${email ? ' · ' + email : ''}` });
+        if (!ok) { reset(); err.textContent = D.email ? `Didn't go through. Email me at ${D.email}` : 'Something went wrong, try again.'; return; }
+        once('sent', 15);
+        stageEl.style.minHeight = form.offsetHeight + 'px';
+        if (reduce) { form.hidden = true; $('#sent', body).hidden = false; return; }
+        flyLetter(form, name, msg, () => { form.hidden = true; form.style.visibility = ''; $('#sent', body).hidden = false; stageEl.style.minHeight = ''; });
+      });
+      $('#again', body).addEventListener('click', () => {
+        $('#sent', body).hidden = true; form.hidden = false; form.style.visibility = ''; form.reset(); cnt.textContent = '0'; reset(); form.elements.name.focus();
+      });
+    }
+  });
+}
+
+function openKind(from) {
+  once('open-kind', 10);
+  const canSend = !!(D.formKey || D.email);
+  openWindow('kind', {
+    title: 'kind-words.fig', color: '#FFE92B', from, width: 620,
+    build(body) {
+      const wallNotes = (D.wall || []).map((n, i) => ({ ...n, c: n.color || NOTE_COLS[i % NOTE_COLS.length] }));
+      const mine = loadMine();
+      const noteHTML = (n, you) => `<li class="wn${you ? ' you' : ''}" style="--nc:${n.c};--r:${n.r ?? ((Math.random() * 6 - 3).toFixed(1))}deg"><p>${esc(n.text)}</p><span>— ${esc(n.by || 'a friend')}${n.role ? `, ${esc(n.role)}` : ''}${you ? ' · you (pending)' : ''}</span></li>`;
+      body.innerHTML = `<h2>wall of kind words</h2>
+        <p class="lede-c">Kind words from people I've worked with. Worked with me? Stick a note on the wall.</p>
+        <ul class="wall" id="wall">${mine.map(n => noteHTML(n, true)).join('')}${wallNotes.map(n => noteHTML(n)).join('')}</ul>
+        <p class="wall-empty" id="wallEmpty" ${(wallNotes.length || mine.length) ? 'hidden' : ''}>The wall is waiting for its first note.</p>
+        ${canSend ? `<h3 class="wall-h">leave a kind word</h3>
+        <div class="stage-note">
+          <form class="note-pad" id="notePad" style="--nc:${NOTE_COLS[0]}" novalidate>
+            <div class="note-top"><div class="dots" role="group" aria-label="Note colour">${NOTE_COLS.map((c, i) => `<button type="button" class="dot${i ? '' : ' on'}" style="--c:${c}" data-c="${c}" aria-label="Colour ${i + 1}"></button>`).join('')}</div><span class="cnt"><b id="cnt">0</b>/300</span></div>
+            <textarea name="msg" rows="4" maxlength="300" placeholder="Write your kind words here…" aria-label="Your kind words" required></textarea>
+            <div class="note-from"><label>— <input name="name" placeholder="your name" maxlength="40" autocomplete="name" required></label><label class="em"><input name="role" placeholder="role / company (optional)" maxlength="60"></label></div>
+            <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="btn-row" style="margin:6px 0 0"><button class="btn" type="submit" id="sendBtn">Stick it on the wall ↗</button><small class="err" id="err" aria-live="polite"></small></div>
+            <small class="fine">I read every note before it goes up on the wall.</small>
+          </form>
+          <div class="sent" id="sent" hidden><div class="stamp">THANK YOU</div><p><b>That made my day.</b> I'll pin it up once I've had a look.</p><button class="btn ghost" id="again" type="button">Write another</button></div>
+        </div>` : ''}`;
+      if (!canSend) return;
+      const pad = $('#notePad', body), ta = $('textarea', pad), cnt = $('#cnt', body), err = $('#err', body), sendBtn = $('#sendBtn', body);
+      $$('.dot', pad).forEach(d => d.addEventListener('click', () => {
+        $$('.dot', pad).forEach(x => x.classList.toggle('on', x === d)); pad.style.setProperty('--nc', d.dataset.c); sfx.click();
+      }));
+      ta.addEventListener('input', () => { cnt.textContent = ta.value.length; });
+      wireEggs(ta, pad);
+      const reset = () => { sendBtn.disabled = false; sendBtn.textContent = 'Stick it on the wall ↗'; };
+      pad.addEventListener('submit', async e => {
+        e.preventDefault(); err.textContent = '';
+        const f = new FormData(pad); if (f.get('website')) return;
+        const name = (f.get('name') || '').trim(), role = (f.get('role') || '').trim(), msg = (f.get('msg') || '').trim();
+        if (!msg) { err.textContent = 'Write something on the note first.'; ta.focus(); return; }
+        if (!name) { err.textContent = 'Sign it with your name.'; pad.elements.name.focus(); return; }
+        sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+        const ok = await deliver({ subject: `★ Kind words from ${name}`, name, message: `NEW KIND WORDS (add to "wall" in data.js if approved)\n\ntext: ${msg}\nby: ${name}${role ? '\nrole: ' + role : ''}` });
+        if (!ok) { reset(); err.textContent = D.email ? `Didn't go through. Email me at ${D.email}` : 'Something went wrong, try again.'; return; }
+        const n = { text: msg, by: name, role, c: pad.style.getPropertyValue('--nc') || NOTE_COLS[0], r: -2 };
+        const all = loadMine(); all.push(n); saveMine(all);
+        const rect = pad.getBoundingClientRect();
+        pad.classList.add('fly'); sfx.lvl(); burst(rect.left + rect.width / 2, rect.top + rect.height / 2, 70); once('kind-sent', 15);
+        setTimeout(() => {
+          pad.hidden = true; $('#sent', body).hidden = false; $('#wallEmpty', body).hidden = true;
+          const wall = $('#wall', body); wall.insertAdjacentHTML('afterbegin', noteHTML(n, true));
+          wall.firstElementChild.classList.add('slam'); wall.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }, reduce ? 0 : 650);
+      });
+      $('#again', body).addEventListener('click', () => {
+        $('#sent', body).hidden = true; pad.hidden = false; pad.classList.remove('fly'); pad.reset(); cnt.textContent = '0'; reset(); ta.focus();
       });
     }
   });
@@ -607,6 +752,7 @@ const ACTIONS = () => [
   { ic: 'Aa', label: 'Open: Graphics', run: () => openCategory('graphics') },
   { ic: '▶', label: 'Open: Video', run: () => openCategory('video') },
   { ic: '✉', label: 'Open: Contact', run: () => openContact() },
+  { ic: '★', label: 'Open: Kind words', run: () => openKind() },
   { ic: '★', label: 'Achievements', run: () => openAchievements() },
   { ic: '☾', label: S.dark ? 'Switch to light mode' : 'Switch to dark mode', hint: 'D', run: () => setDark(!S.dark, true) },
   { ic: '♪', label: S.sound ? 'Sound: turn off' : 'Sound: turn on', run: () => setSound(!S.sound) },
@@ -707,7 +853,7 @@ addEventListener('keydown', e => {
    ========================================================= */
 function openFromHash() {
   const h = location.hash.slice(1);
-  if (h === 'about') openAbout(); else if (h === 'work') openWork(); else if (h === 'contact') openContact();
+  if (h === 'about') openAbout(); else if (h === 'work') openWork(); else if (h === 'contact') openContact(); else if (h === 'kind') openKind();
   else if (D.categories[h]) openCategory(h);
 }
 function start() {

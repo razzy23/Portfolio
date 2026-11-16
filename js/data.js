@@ -5,7 +5,9 @@
 ------------------------------------------------------------------- */
 window.SITE = {
   name: 'Rav',
-  email: '',                             // add your real email to enable the contact form
+  email: 'ravindu.w23@gmail.com',                             // your email: used as a mailto: fallback if formKey is empty
+  formKey: '1bbda94b-4f71-472e-bdf0-1a20ad39f751',                           // free access key from web3forms.com (emails you the messages, no backend)
+  wall: [],                              // kind words: { text: '…', by: 'Name' } — shown as sticky notes on the contact wall
   portfolios: [
     { key: 'behance', label: 'Behance', url: 'https://behance.net/ravzxazanka',  img: 'assets/links/behance.png',  bg: '#0057FF' },
     { key: 'dribbble', label: 'Dribbble', url: 'https://dribbble.com/razzy23',    img: 'assets/links/dribbble.webp', bg: '#FFD1E6', pad: true },
@@ -35,7 +37,7 @@ window.SITE = {
         { title: 'Intergalactic', year: '2023', role: 'UX designer · design system & branding', tools: ['Figma', 'Photoshop', 'Wireframing'], desc: 'An interplanetary travel booking app, designed in a team of three UX designers for the Rootcode Triathlon design phase. My part: the design system and branding, while the others added screens like profile and sign up.', link: 'case/intergalactic.html', cta: 'Open case study →', logo: 'intergalactic', contain: true, bg: '#020208' },
         { title: 'COCO', year: '2023', role: 'Brand concept + hi-fi designs', tools: ['Figma', 'User journey', 'Design system'], desc: 'A one-stop-shop app for all things pet related: pet health, vet booking, IoT feeders and a shop. Made in a team of four; my part was mostly the brand concept and the high-fidelity designs.', link: 'case/coco.html', cta: 'Open case study →', cover: 'assets/work/coco/logo-icon.png', contain: true, bg: '#FFFBEF' },
         { title: 'Travello', year: '2023', role: 'Solo practice project · persona + UI', tools: ['Figma', 'Persona'], desc: 'A solo practice project: a travel companion app to discover places, plan the trip and keep a timeline of everywhere you have been.', link: 'case/travello.html', cta: 'Open case study →', cover: 'assets/work/travello/logo.svg', contain: true, bg: '#FAF8F5' },
-        { title: 'ekoo', year: '2024', role: 'Hi-fi designs + prototyping', tools: ['Figma', 'Prototyping', 'Hackathon'], desc: 'A hackathon app that connects eco-travellers with Sri Lankan communities for authentic, sustainable experiences. Concepted and designed by a team of three in 12 hours; I was in charge of the high-fidelity designs and prototyping.', link: 'case/ekoo.html', cta: 'Open case study →', cover: 'assets/work/ekoo/logo.png', contain: true, bg: '#E6F7F1' },
+        { title: 'ekoo', year: '2024', role: 'Hi-fi designs + prototyping', tools: ['Figma', 'Prototyping', 'Hackathon'], desc: 'A hackathon app that connects eco-travellers with Sri Lankan communities for authentic, sustainable experiences. Concepted and designed by a team of three in 12 hours; I was in charge of the high-fidelity designs and prototyping.', link: 'case/ekoo.html', cta: 'Open case study →', cover: 'assets/work/ekoo/logo.svg', contain: true, bg: '#E6F7F1' },
       ]
     },
     web: {

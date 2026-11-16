@@ -104,4 +104,4 @@ h3.sub{font-size:clamp(24px,3vw,38px);margin-bottom:6px}
 }
 @media (prefers-reduced-motion:reduce){.screen.auto img{animation:none}}
 
-.brand .mark{mix-blend-mode:multiply}
+
