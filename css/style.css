@@ -466,8 +466,11 @@ body[data-tool="comment"] .tool-layer{cursor:copy}
 .fl-box.hover .wing3 polygon{fill:#BDF3F8}
 .fl-box.hover .wing4 polygon{fill:#FFC7E6}
 .fl-box.hover{transform:rotateX(54deg) rotateY(-10deg) rotateZ(25deg);transition-delay:.5s}
-.fl-box.hover.fly_away_first{transform:translateX(-100px) translateZ(300px) rotateX(42deg) rotateY(-11deg) rotateZ(27deg);transition-delay:0s;transition-duration:.4s;transition-timing-function:ease-out}
-.fl-box.hover.fly_away_first.fly_away{transform:translateX(600px) translateY(-400px) translateZ(-5000px) rotateX(66deg) rotateY(-12deg) rotateZ(36deg);transition:transform 2s ease-out,opacity 1.5s .5s linear;opacity:0}
+/* take-off: the whole overlay moves in 2D (no perspective growth); the plane itself only pitches and banks */
+.flight.wind{transform:translate(-34px,44px);transition:transform .55s cubic-bezier(.3,0,.3,1)}
+.flight.wind.go{transform:translate(90vh,-115vh) scale(.82);transition:transform 1.25s cubic-bezier(.45,0,.85,.65)}
+.fl-box.hover.fly_away_first{transform:rotateX(47deg) rotateY(-10deg) rotateZ(25deg);transition-delay:0s;transition-duration:.55s;transition-timing-function:cubic-bezier(.3,0,.3,1)}
+.fl-box.hover.fly_away_first.fly_away{transform:rotateX(58deg) rotateY(-14deg) rotateZ(29deg);transition:transform .9s ease-out}
 .fl-box.beginning{transform:rotateY(180deg)}
 .fl-box.hover .curved{display:none}
 

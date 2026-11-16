@@ -1,0 +1,113 @@
+/* RevolUX 3.0 case study — retro arcade theme (on top of case-common.css) */
+:root{
+  --bg:#04120B; --paper:#08200F; --soft:#0B2A16; --ink:#B9FFD3; --muted:#6FA98A;
+  --acc:#2BE04B; --acc2:#1DE9D5; --yel:#E6F03C; --dark:#03100A;
+  --font:'IBM Plex Mono',ui-monospace,monospace; --head:'Press Start 2P','IBM Plex Mono',monospace;
+}
+body{background:
+  linear-gradient(rgba(43,224,75,.07) 1px,transparent 1px) 0 0/44px 44px,
+  linear-gradient(90deg,rgba(43,224,75,.07) 1px,transparent 1px) 0 0/44px 44px,
+  radial-gradient(120% 80% at 50% 0,#0A2B17,var(--bg) 70%) fixed}
+/* scanlines over everything */
+body::after{content:"";position:fixed;inset:0;z-index:400;pointer-events:none;background:repeating-linear-gradient(rgba(0,0,0,.16) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.px{font-family:var(--head);text-transform:uppercase;letter-spacing:.02em}
+.hl{color:var(--acc2);font-weight:600}
+h2{font-size:clamp(22px,3.6vw,46px);line-height:1.3;letter-spacing:0;text-transform:uppercase;color:#fff;text-shadow:3px 3px 0 #0b5a25}
+h3.px{font-size:11px;line-height:1.6;color:var(--acc);margin-bottom:6px}
+.kick{font-size:10px;color:var(--yel);margin-bottom:12px}
+.kick::before{content:"> "}
+
+/* dark-on-neon for filled controls */
+.btn,.back,.toast,.chips a.on,.tab.on,.lb .x{color:var(--dark)}
+.btn.ghost{color:var(--ink)}
+.btn,.back{border-radius:6px}
+.btn.px{font-size:11px;padding:12px 18px}
+.card,.meta div{border-radius:6px}
+.chips a{text-transform:uppercase;font-size:11px;letter-spacing:.06em}
+
+/* score */
+.score{flex:none;display:flex;flex-direction:column;align-items:flex-end;font-family:var(--head);line-height:1.5}
+.score small{font-size:7px;color:var(--yel)}
+.score b{font-size:11px;font-weight:400;color:#fff}
+.score.bump b{animation:bump .35s var(--bounce)}
+@keyframes bump{50%{transform:scale(1.35);color:var(--yel)}}
+
+/* cover */
+.cover{padding-top:clamp(28px,5vw,64px)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,72px);align-items:center}
+h1 img{width:min(100%,520px);height:auto;filter:drop-shadow(0 0 18px rgba(43,224,75,.35))}
+.tag{font-size:clamp(15px,1.5vw,21px);max-width:34ch;margin:14px 0 22px;color:#fff}
+.meta b{color:#fff}
+#start{animation:blink 1.4s steps(2,jump-none) infinite}
+#start:hover{animation:none}
+@keyframes blink{50%{opacity:.55}}
+.crt{display:block;width:100%;max-width:460px;margin-inline:auto;padding:clamp(12px,1.8vw,20px) clamp(12px,1.8vw,20px) 0;border:2px solid var(--ink);border-radius:18px;background:linear-gradient(#0E3A1F,#082414);box-shadow:8px 8px 0 var(--acc);transition:transform .3s var(--bounce)}
+.crt:hover{transform:rotate(-1.5deg) translateY(-4px)}
+.tube{position:relative;display:block;overflow:hidden;border:2px solid var(--ink);border-radius:26px/22px;background:#000}
+.tube img{width:100%;height:auto;animation:flick 5s infinite}
+.tube::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(rgba(0,0,0,.28) 0 2px,transparent 2px 4px),radial-gradient(circle at 50% 50%,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+@keyframes flick{0%,96%,100%{opacity:1}97%{opacity:.82}98%{opacity:1}99%{opacity:.9}}
+.coin{display:block;padding:12px 0 14px;font-size:10px;color:var(--yel);animation:blink 1s steps(2,jump-none) infinite}
+.crt.on .coin{animation:none;color:var(--acc)}
+
+/* concept kit */
+.kit{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
+.pw{padding:12px;font-size:13px;line-height:1.6;transition:transform .2s var(--bounce),box-shadow .2s}
+.pw:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--acc2)}
+.demo{height:150px;margin-bottom:14px;border:2px solid var(--ink);border-radius:4px;background:var(--dark);overflow:hidden;position:relative}
+.d-echo{display:grid;place-content:center;gap:2px;text-align:center;font:700 clamp(13px,1.5vw,19px)/1.15 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.02em;padding:0 8px}
+.d-echo span{color:#fff;white-space:nowrap}
+.d-echo span+span{color:transparent;-webkit-text-stroke:1px var(--acc2)}
+.d-echo span:nth-child(3){opacity:.55}
+.d-echo.pop span{animation:echo .45s var(--bounce) backwards}
+.d-echo.pop span:nth-child(2){animation-delay:.08s}.d-echo.pop span:nth-child(3){animation-delay:.16s}
+@keyframes echo{from{transform:translateY(-14px);opacity:0}}
+.echo-in{width:100%;margin-top:10px;padding:7px 10px;font:inherit;font-size:12px;color:#fff;background:var(--dark);border:2px solid var(--ink);border-radius:4px}
+.echo-in::placeholder{color:var(--muted)}
+.d-term{display:grid;place-items:center;padding:12px;background:#031a10}
+.term{width:100%;border:1px solid var(--acc2);background:#0d0508;font-size:10px;line-height:1.5;color:#e9fff4;min-height:110px}
+.term i{display:flex;justify-content:space-between;font-style:normal;padding:3px 7px;border-bottom:1px solid var(--acc2);color:var(--acc2)}
+.term em{font-style:normal;letter-spacing:.1em}
+.term p{padding:7px}
+.term p::after{content:"█";color:var(--acc);animation:blink .9s steps(2,jump-none) infinite}
+.d-mesh{background:url(../assets/work/revolux/carousel.jpg) 34% 62%/900% auto no-repeat}
+.d-duo{background:url(../assets/work/revolux/post1.jpg) 50% 62%/170% auto no-repeat}
+.pw:hover .d-mesh{animation:pan 6s linear infinite alternate}
+@keyframes pan{to{background-position:60% 62%}}
+.pal{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(20px,3vw,34px)}
+.sw{display:flex;align-items:center;gap:10px;padding:6px 12px 6px 6px;border:2px solid var(--ink);border-radius:6px;background:var(--paper);box-shadow:3px 3px 0 var(--ink);font-size:12px;transition:transform .12s}
+.sw:hover{transform:translate(-2px,-2px)}
+.sw i{width:26px;height:26px;border:2px solid var(--ink);background:var(--c)}
+.sw small{display:block;color:var(--muted);font-size:10px}
+
+/* posts */
+.pano{overflow-x:auto;border:2px solid var(--ink);border-radius:8px;box-shadow:8px 8px 0 var(--acc);cursor:grab;scrollbar-width:thin;scrollbar-color:var(--acc) var(--dark);background:#000}
+.pano.drag{cursor:grabbing}
+.pano img{height:clamp(240px,42vw,520px);width:auto;max-width:none;user-select:none;-webkit-user-drag:none}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.8vw,24px)}
+.shot{position:relative;display:block;width:100%;padding:0;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:#000;box-shadow:6px 6px 0 var(--ink);transition:transform .2s var(--bounce),box-shadow .2s}
+.shot:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--acc2)}
+.shot img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
+.shot span{position:absolute;left:8px;bottom:8px;padding:6px 8px;font-size:8px;background:var(--dark);color:var(--acc);border:2px solid var(--acc)}
+.shot.seen span{background:var(--acc);color:var(--dark)}
+.shot.seen span::before{content:"✓ "}
+
+/* merch */
+.merch{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(12px,1.8vw,24px);align-items:start}
+.merch-col{display:grid;gap:clamp(12px,1.8vw,24px)}
+.merch .shot img{aspect-ratio:auto;height:auto}
+
+/* footer */
+.end{background:linear-gradient(transparent,rgba(43,224,75,.1))}
+.over{font-size:clamp(28px,6vw,72px)}
+.final{font-size:11px;color:var(--yel);margin-bottom:16px}
+.final b{color:#fff;font-weight:400}
+.lb img{background:#000;border-color:var(--ink);border-radius:8px}
+
+@media (max-width:1000px){.kit{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){
+  .hero,.merch{grid-template-columns:minmax(0,1fr)}
+  .crt{max-width:340px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){.kit{grid-template-columns:minmax(0,1fr)}.score small{display:none}}

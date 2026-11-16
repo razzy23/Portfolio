@@ -30,7 +30,8 @@ const SECRETS = {
   context:   { name: 'Inspector',         hint: 'Right-click like a developer.',                solved: 'Right-click → Copy as CSS.' },
   sudo:      { name: 'Sudo',              hint: 'Admin panel in the quick actions?',            solved: 'Type "sudo" in quick actions.' },
   sleep:     { name: 'Sleepy Rav',        hint: 'Do nothing. Seriously. For 20 seconds.',       solved: 'Stay idle for 20s, then wake him.' },
-  boomerang: { name: 'Boomerang',         hint: 'Folders do not belong on Rav. Try it.',        solved: 'Drop a folder onto Rav.' }
+  boomerang: { name: 'Boomerang',         hint: 'Folders do not belong on Rav. Try it.',        solved: 'Drop a folder onto Rav.' },
+  sixseven:  { name: 'Six seven',         hint: 'Two numbers the internet will not stop saying.', solved: 'Type 6 7.' }
 };
 const SECRET_COUNT = Object.keys(SECRETS).length;
 
@@ -349,9 +350,9 @@ function flyLetter(card, name, msg, onFly) {
   (async () => {
     await t(() => { plate.classList.remove('front'); box.classList.remove('beginning'); flaps.forEach(f => f.classList.add('curved')); sfx.pop(); }, 350);
     await t(() => box.classList.add('hover'), 2800);
-    await t(() => box.classList.add('fly_away_first'), 1400);
-    await t(() => { box.classList.add('fly_away'); sfx.lvl(); onFly && onFly(); }, 600);
-    await t(() => fl.remove(), 2200);
+    await t(() => { box.classList.add('fly_away_first'); fl.classList.add('wind'); }, 1400);
+    await t(() => { box.classList.add('fly_away'); fl.classList.add('go'); sfx.lvl(); onFly && onFly(); }, 600);
+    await t(() => fl.remove(), 1700);
   })();
 }
 
@@ -819,6 +820,25 @@ addEventListener('scroll', hideCtx, true); addEventListener('blur', hideCtx);
 /* =========================================================
    Keyboard
    ========================================================= */
+/* 6 7: UI/UX + Web and Graphics + Video ride one sine wave in exact opposite phase */
+let sixRaf = 0;
+function sixSeven() {
+  unlock('sixseven'); sfx.pop();
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  cancelAnimationFrame(sixRaf);
+  const els = $$('.folder .f-inner').map(el => [el, el.closest('.f-graphics, .f-video') ? 1 : -1]);
+  const AMP = 30, PERIOD = 380, TOTAL = PERIOD * 6, IN = 260, OUT = 420, t0 = performance.now();
+  const smooth = x => x * x * (3 - 2 * x);
+  const step = now => {
+    const t = now - t0;
+    if (t >= TOTAL) { els.forEach(([el]) => el.style.translate = ''); return; }
+    const env = smooth(Math.min(1, t / IN)) * smooth(Math.min(1, (TOTAL - t) / OUT));
+    const y = AMP * env * Math.sin(t / PERIOD * 2 * Math.PI);
+    els.forEach(([el, d]) => el.style.translate = `0 ${(y * d).toFixed(2)}px`);
+    sixRaf = requestAnimationFrame(step);
+  };
+  sixRaf = requestAnimationFrame(step);
+}
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let kBuf = [], tBuf = '';
 addEventListener('keydown', e => {
@@ -840,7 +860,8 @@ addEventListener('keydown', e => {
   const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
   kBuf.push(k); kBuf = kBuf.slice(-KONAMI.length);
   if (kBuf.join() === KONAMI.join()) { kBuf = []; if (unlock('konami')) party(); else party(); }
-  if (e.key.length === 1) { tBuf = (tBuf + k).slice(-8); if (tBuf.endsWith('figma')) { tBuf = ''; rain(80, true); unlock('figma'); } }
+  if (e.key.length === 1) { tBuf = (tBuf + k).slice(-8); if (tBuf.endsWith('figma')) { tBuf = ''; rain(80, true); unlock('figma'); }
+    if (tBuf.replace(/ /g, '').endsWith('67')) { tBuf = ''; sixSeven(); } }
 
   if (e.key === '/') { e.preventDefault(); openPalette(); return; }
   if (e.key === '?') { openHelp(); return; }
@@ -872,5 +893,5 @@ function init() {
 }
 init();
 
-console.log('%c R ', 'background:#FFE92B;color:#1b1918;font:700 20px monospace;border:2px solid #1b1918', '\nHey, a fellow developer 👋  There are 9 secrets on this page. Konami works.');
+console.log('%c R ', 'background:#FFE92B;color:#1b1918;font:700 20px monospace;border:2px solid #1b1918', '\nHey, a fellow developer 👋  There are 10 secrets on this page. Konami works.');
 })();

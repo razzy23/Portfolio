@@ -24,7 +24,7 @@ window.SITE = {
     facts: [
       ['4', 'disciplines'],
       ['∞', 'cups of coffee'],
-      ['9', 'secrets on this site']
+      ['10', 'secrets on this site']
     ]
   },
 
@@ -51,6 +51,7 @@ window.SITE = {
       title: 'Graphics', file: 'graphics.fig', glyph: 'Aa', color: '#0FC8DD', tint: '#D2F7FB',
       blurb: 'Brand identities, posters and social.',
       items: [
+        { title: 'RevolUX 3.0', year: '2024', role: 'Project lead · concept + key pieces', tools: ['Figma', 'Photoshop', 'Leonardo AI'], desc: 'A retro arcade look for RevolUX 3.0, an inter-university UI/UX designathon: launch carousel, social posts and delegate merch, built from wireframe meshes, terminal windows and 1980s game screens.', link: 'case/revolux.html', cta: 'Open case study →', cover: 'assets/work/revolux/logo.png', contain: true, bg: '#04120B' },
         { title: 'MadHack 2023 Concept', year: '2023', role: 'Brand design', tools: ['Figma', 'Brand identity', 'Illustration'], desc: 'Brand guidelines for MadHack 2023, the mobile app hackathon by the IEEE Student Branch of UCSC: logo system, colour, typography, mascot elements, swags and awards.', link: 'case/madhack.html', cta: 'Open case study →', cover: 'assets/work/madhack/logos/icon.svg', contain: true, bg: '#100B30' },
       ]
     },

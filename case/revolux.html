@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RevolUX 3.0 — Retro arcade event graphics · Rav</title>
+<meta name="description" content="RevolUX 3.0: a retro arcade visual concept for an inter-university UI/UX designathon. Social posts, launch carousel and merch.">
+<link rel="icon" type="image/jpeg" href="../assets/work/revolux/thumb.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/case-common.css">
+<link rel="stylesheet" href="../css/revolux.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="back" href="../index.html#graphics" data-tip="exit game">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M56.8488 24.4345C56.8488 27.5298 55.9766 30.2877 54.2322 32.7083C52.5076 35.129 50.2577 36.875 47.4825 37.9464L56.8488 50H43.9739L35.9456 38.869H15.2208V50H3V22.2208C3 15.4714 8.47144 10 15.2208 10H42.4277C45.084 10 47.5024 10.6548 49.6829 11.9643C51.8634 13.254 53.5979 14.9901 54.8864 17.1726C56.1947 19.3552 56.8488 21.7758 56.8488 24.4345ZM19.2208 18.869C17.0117 18.869 15.2208 20.6599 15.2208 22.869V30H27.1591H39.0975C40.6238 30 41.9222 29.4544 42.9926 28.3631C44.0829 27.2718 44.628 25.9623 44.628 24.4345C44.628 22.9067 44.0829 21.5972 42.9926 20.506C41.9222 19.4147 40.6238 18.869 39.0975 18.869H19.2208Z"/></svg>
+      <span>← portfolio</span>
+    </a>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+    <div class="score" data-tip="open things to score" aria-live="off"><small>SCORE</small><b id="score">000000</b></div>
+  </div>
+  <div class="bar" id="bar" aria-hidden="true"></div>
+</header>
+
+<main>
+  <!-- cover -->
+  <section class="cover" id="top" data-title="start">
+    <div class="wrap hero">
+      <div class="hero-text">
+        <p class="px kick reveal">1UP · Graphics</p>
+        <h1 class="reveal" style="--d:.05s"><img src="../assets/work/revolux/logo.png" alt="RevolUX 3.0" width="900" height="248"></h1>
+        <p class="tag reveal" style="--d:.1s">A retro arcade look for an inter-university UI/UX designathon.</p>
+        <div class="meta reveal" style="--d:.16s">
+          <div><small>Project</small><b>Event graphics + merch</b></div>
+          <div><small>Year</small><b>2024</b></div>
+          <div><small>For</small><b>AIESEC in University of Colombo × IEEE Student Branch of UCSC</b></div>
+          <div><small>My role</small><b>Project lead · concept + key pieces</b></div>
+          <div><small>Tools</small><b>Figma · Photoshop · Leonardo AI</b></div>
+        </div>
+        <div class="btn-row reveal" style="--d:.22s"><button class="btn px" id="start">> Press start</button></div>
+      </div>
+      <div class="hero-crt reveal" style="--d:.12s">
+        <button class="crt" id="crt" data-tip="insert coin" aria-label="Arcade screen. Click to insert a coin.">
+          <span class="tube"><img src="../assets/work/revolux/post1.jpg" alt="RevolUX 3.0 teaser post: Are you ready? Await to witness next revolution" width="1080" height="1080"></span>
+          <span class="px coin" id="coin">Insert coin</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- concept -->
+  <section id="concept" data-title="concept">
+    <div class="wrap">
+      <p class="px kick reveal">Stage 1</p>
+      <h2 class="reveal">The concept</h2>
+      <p class="lede reveal">RevolUX 3.0 is an inter-university UI/UX designathon. As project lead I came up with the design concept: <b class="hl">a retro arcade</b>, built from abstract technical elements and the feel of a 1980s game screen. I designed the key pieces, and the team carried the system across the rest of the campaign.</p>
+      <div class="kit">
+        <article class="card pw reveal">
+          <div class="demo d-echo" id="echo" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h3 class="px">Echo type</h3>
+          <p>Headlines repeat as outlines, like a score flashing on screen.</p>
+          <input class="echo-in" id="echoIn" type="text" maxlength="16" placeholder="Type your own…" aria-label="Type a headline to echo">
+        </article>
+        <article class="card pw reveal" style="--d:.06s">
+          <div class="demo d-term" aria-hidden="true"><div class="term"><i>&gt;_ DESIGN TIPS<em>▭ ▣ ✕</em></i><p id="typed"></p></div></div>
+          <h3 class="px">Terminal windows</h3>
+          <p>Body copy sits inside command-line windows instead of plain text boxes.</p>
+        </article>
+        <article class="card pw reveal" style="--d:.12s">
+          <div class="demo d-mesh" aria-hidden="true"></div>
+          <h3 class="px">Wireframe mesh</h3>
+          <p>Warped grids and perspective floors run behind every post and tie the set together.</p>
+        </article>
+        <article class="card pw reveal" style="--d:.18s">
+          <div class="demo d-duo" aria-hidden="true"></div>
+          <h3 class="px">Duotone hardware</h3>
+          <p>CRT monitors, arcade cabinets and VR headsets, generated with Leonardo AI and finished in Photoshop.</p>
+        </article>
+      </div>
+      <div class="pal reveal" id="pal" aria-label="Colour palette. Click a colour to copy it."></div>
+    </div>
+  </section>
+
+  <!-- posts -->
+  <section id="posts" data-title="posts">
+    <div class="wrap">
+      <p class="px kick reveal">Stage 2</p>
+      <h2 class="reveal">The campaign</h2>
+      <p class="lede reveal">The launch carousel is three slides drawn as one continuous artwork. Drag it sideways.</p>
+      <div class="pano reveal" id="pano" tabindex="0" data-tip="drag ↔" aria-label="Launch carousel, three joined slides. Scroll sideways.">
+        <img src="../assets/work/revolux/carousel.jpg" alt="Three joined slides: What can you gain?, Await to witness the next revolution, What is RevolUX 3.0?" width="2700" height="900" draggable="false">
+      </div>
+      <p class="lede reveal" style="margin-top:clamp(28px,4vw,48px)">Then the posts that ran through the event. Pick one to see it full size.</p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- merch -->
+  <section id="merch" data-title="merch">
+    <div class="wrap">
+      <p class="px kick reveal">Stage 3</p>
+      <h2 class="reveal">The merch</h2>
+      <p class="lede reveal">The delegate T-shirt and hoodie carry the same world on the back: a head wired into old screens, a wireframe form, and the line <b class="hl">“The crazy ones, misfits, rebels, troublemakers”</b>.</p>
+      <div class="merch">
+        <button class="shot art reveal" data-src="poster.jpg" data-alt="Back print artwork: a figure wearing a helmet of retro screens beside a wireframe form" data-tip="zoom in"><img src="../assets/work/revolux/poster.jpg" alt="Back print artwork: a figure wearing a helmet of retro screens beside a wireframe form" width="1279" height="1500" loading="lazy"><span class="px">Back print</span></button>
+        <div class="merch-col">
+          <button class="shot reveal" style="--d:.08s" data-src="hoodie.jpg" data-alt="Hoodie mockup, front and back" data-tip="zoom in"><img src="../assets/work/revolux/hoodie.jpg" alt="Hoodie mockup, front and back" width="1561" height="902" loading="lazy"><span class="px">Hoodie</span></button>
+          <button class="shot reveal" style="--d:.14s" data-src="tshirt.jpg" data-alt="Delegate T-shirt reveal post" data-tip="zoom in"><img src="../assets/work/revolux/tshirt.jpg" alt="Delegate T-shirt reveal post" width="1080" height="1080" loading="lazy"><span class="px">T-shirt reveal</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div class="wrap">
+      <h2 class="over">Game <span class="hl">over</span></h2>
+      <p class="px final">Your score <b id="final">000000</b></p>
+      <p class="lede" style="margin-inline:auto">Thanks for playing. RevolUX 3.0 was organised by AIESEC in University of Colombo in collaboration with the IEEE Student Branch of UCSC.</p>
+      <div class="row"><a class="btn" href="../index.html#graphics">← Back to Graphics</a><button class="btn ghost" id="toTop">Continue? ↑</button></div>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb" hidden><button class="x" aria-label="Close">✕</button><img id="lbImg" alt=""></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="pointer" id="pointer" aria-hidden="true"><svg viewBox="0 0 30 29"><path d="M19.241 14.2809L27.8131 11.3182C28.9603 10.9217 28.9312 9.28928 27.7706 8.93395L2.88267 1.31424C1.81923 0.988654 0.889727 2.10587 1.40332 3.09234L13.4708 26.2708C14.0055 27.298 15.5279 27.1133 15.8015 25.988L18.4321 15.1697C18.5329 14.7551 18.8377 14.4202 19.241 14.2809Z" stroke-width="2.5" stroke-linejoin="round"/></svg><span class="pill"></span></div>
+
+<script src="../js/cursor.js"></script>
+<script src="../js/kit.js"></script>
+<script src="../js/revolux.js"></script>
+</body>
+</html>
