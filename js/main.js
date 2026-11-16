@@ -224,7 +224,7 @@ function openCategory(key, from) {
         body.innerHTML = `<div class="crumbs"><span>Drafts</span><i>/</i><b>${esc(c.title)}</b><span class="chip">${c.items.length} ${c.items.length === 1 ? 'file' : 'files'}</span></div>
           <p class="blurb">${esc(c.blurb)}</p><div class="grid"></div>`;
         const grid = $('.grid', body);
-        if (!c.items.length) { grid.replaceWith(el('div', 'empty', '<b>Empty folder</b><span>New work is on its way.</span>')); body.scrollTop = 0; return; }
+        if (!c.items.length) { grid.replaceWith(el('div', 'empty', '<b>Empty folder</b><span>Yet to build up the courage to add my work here</span>')); body.scrollTop = 0; return; }
         c.items.forEach((it, i) => {
           const b = el('button', 'card');
           b.innerHTML = `<span class="thumb${it.contain ? ' contain' : ''}" style="--c:${it.bg || c.tint};--l:${c.color}">${it.logo ? LOGOS[it.logo] : it.cover ? `<img src="${esc(it.cover)}" alt="">` : `<span class="glyph">${esc(c.glyph)}</span>`}${it.sample ? '<em class="sample">sample</em>' : ''}</span>
